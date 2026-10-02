@@ -17,7 +17,7 @@ The existing group-wide Ensure action currently updates existing upstream keys a
 - [x] Implement read-only explicit binding and safe missing-only Ensure behavior.
 - [x] Add the authenticated HTTP endpoint, request validation, and administrator documentation.
 - [x] Integrate and run focused, full, race, static, and disposable MySQL tests; complete the review loop.
-- [ ] Publish the task branch and verify the upstream pull request.
+- [x] Publish the task branch and verify upstream PR #25 is open against main; codex-pr-flow confirmed reuse rather than duplication.
 
 ## Surprises & Discoveries
 
@@ -52,6 +52,8 @@ Verification on 2026-10-02: affected-package tests pass; go test ./... passes; g
 The review loop identified concurrency, compatibility, and credential-log risks; the follow-up review after targeted fixes showed no scored regressions. Remaining documented tradeoffs are serialized administration operations and no distributed exactly-once key creation. There is no schema migration or frontend redesign.
 
 Parallel storage/service/API lanes produced the implementation; centralized integration caught and repaired the cross-layer MySQL race. The reusable acceptance gate is target/sibling equality, zero upstream updates, complete inventory, adversarial concurrency, and a real-database negative control. No live service configuration, upstream keys, or deployment was changed by this coding task. Publishing is tracked separately below.
+
+Publication: bejix/upstream-ops PR #25 is open from the task branch on the authorized personal fork (the upstream account has read-only permission). The first code commit is c0ac22b; the final documentation-only commit records this outcome. GitHub reported no status checks at verification time, so remote CI is not claimed. The disposable MySQL instance has been shut down after tests. No merge or deployment was performed.
 
 ## Context and Orientation
 
